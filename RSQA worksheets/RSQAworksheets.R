@@ -6,7 +6,6 @@
 # Load packages
 
   #For plotting
-
     library(dplyr)
       # Includes piping
     library(ggplot2)
@@ -24,6 +23,9 @@
 
   # For statistical tests
     library(ggpubr)
+
+  # For multivariable analysis
+    library(tidyr)
 
 # Loading and Building Data
 
@@ -369,15 +371,70 @@
 
 # Q50    
     
-    setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
-      # Set working directory for new data downloaded for this section
+  setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
+    # Set working directory for new data downloaded for this section
       
-    results3 <- read.csv("Results.csv")
-      # Load data
-    sites <- read.csv("Sites.csv")
-      # Load site data associated with results
+  results3 <- read.csv("Results.csv")
+    # Load data
+  sites <- read.csv("Sites.csv")
+    # Load site data associated with results
     
 # Q52
     
-    Median_results <- results3 %>% group_by(SITE_NO, PARM_NM) %>% dplyr::summarise(median_val = median(RESULT_VA)) %>% ungroup()
-      # Make data frame containing site number and parameter name, with the median result value
+  median_results <- results3 %>% group_by(SITE_NO, PARM_NM) %>% dplyr::summarise(median_val = median(RESULT_VA)) %>% ungroup()
+    # Make data frame containing site number and parameter name, with the median result value
+    
+# Q53
+    
+  short_results <- pivot_wider(Median_results, id_cols = SITE_NO, names_from = PARM_NM, values_from = median_val)
+    # Convert median_results to short form
+    
+# Q54    
+    
+  colSums(is.na(short_results))
+    # Get a list of how many NAs are in each column
+    
+# Q55    
+    
+  Interestingcolumns_data <- as.data.frame(short_results[,c(2,7,8,9,11,12,16,17)])
+    # Select the columns that we are interested in showing on the PCA
+  
+  rownames(Interestingcolumns_data) <- short_results$SITE_NO
+    # Assigns site number to be the row name so that it is not included in the PCA
+  
+# Q56
+  
+  final_results <- Interestingcolumns_data[complete.cases(Interestingcolumns_data), ]
+    # Removes NAs from the data set
+
+# Q57
+
+  metadata <- sites[match(rownames(final_results), sites$SITE_NO),]
+    # Create metadata by matching the row names of final_results with the site numbers in the site data frame
+  
+# Q58
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
