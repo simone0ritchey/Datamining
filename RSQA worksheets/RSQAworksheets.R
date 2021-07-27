@@ -17,8 +17,6 @@
   # For mapping
     library(rnaturalearth)
       # Had to install with devtools::install_github("ropenscilabs/rnaturalearth")
-    library(sf)
-      # Loaded for use of rnatural earth, according to https://cran.r-project.org/web/packages/rnaturalearth/README.html
     library(rnaturalearthdata)
       # After loading, said masked by the package rnaturalearth
     library(ggspatial)
@@ -29,7 +27,7 @@
 
 # Loading and Building Data
 
-  setwd("/Users/simone/Documents/Documents/UT/UrbanEco/Datamining/RSQA worksheets/RSQAworksheetdata")
+  setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Mydata")
     # Set working directory
   mydata <- read.csv("Results.csv")
     # California pesticide data I downloaded from RSQA
@@ -59,7 +57,7 @@
       world <- ne_countries(scale="medium", returnclass = "sf")
       # Data frame containing shape of the countries we want to map
     
-  setwd("/Users/simone/Documents/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Replicating Graphs")
+  setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Replicating Graphs")
     # Set working directory for replicating graphs
     
   results2 <- read.csv("Results.csv")
@@ -94,7 +92,7 @@
       
   # Data for Multivariate Analysis
       
-      setwd("/Users/simone/Documents/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
+      setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
         # Set working directory for new data downloaded for this section
       
       results3 <- read.csv("Results.csv")
@@ -217,7 +215,7 @@
   
 # Q33
   
-  setwd("/Users/simone/Documents/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Replicating Graphs")
+  setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Replicating Graphs")
     # Working directory for replicating graphs
     
   results2 <- read.csv("Results.csv")
@@ -371,7 +369,7 @@
 
 # Q50    
     
-    setwd("/Users/simone/Documents/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
+    setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
       # Set working directory for new data downloaded for this section
       
     results3 <- read.csv("Results.csv")
@@ -379,3 +377,7 @@
     sites <- read.csv("Sites.csv")
       # Load site data associated with results
     
+# Q52
+    
+    Median_results <- results3 %>% group_by(SITE_NO, PARM_NM) %>% dplyr::summarise(median_val = median(RESULT_VA)) %>% ungroup()
+      # Make data frame containing site number and parameter name, with the median result value
