@@ -471,3 +471,26 @@
 # Q64  
   
   summary(prcompData)
+  
+  ggscreeplot(prcompData, type="pev")
+    # Make scree plot of variance in each principle component
+  ggscreeplot(prcompData, type="cev")
+    # Make scree plot that shows how much variance is explained as number of principle components increases
+  
+# Q65
+  
+  ggbiplot(prcompData, choices = c(1,2), var.axes=F)
+    # Make PCA
+  ggbiplot(prcompData, choices = c(1,2), var.axes=F, groups=paste(metadata$RSQA_STUDY), ellipse=T)
+    # Make PCA grouped by region
+  
+# Q66
+  
+  ggbiplot(prcompData, choices = c(1,2), var.axes=T, groups=paste(metadata$RSQA_STUDY))+theme_classic()
+    # Turn on variable axes
+  
+# Q67
+  
+  ggbiplot(prcompData, choices = c(1,2), var.axes=F, groups=paste(metadata$STATE_ABBREV), ellipse=T)
+    # Group by state
+             
