@@ -465,9 +465,8 @@
   
 # Q63
   
-  
-  
-  
-  
+  prcompData <- prcomp(final_results, center = T, scale = T)
+    # Make principal component axes  
+  summary(prcompData)
   
   
