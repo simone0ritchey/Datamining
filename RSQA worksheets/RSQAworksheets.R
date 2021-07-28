@@ -26,6 +26,8 @@
 
   # For multivariable analysis
     library(tidyr)
+    library(pheatmap)
+    library(ggbiplot)
 
 # Loading and Building Data
 
@@ -101,6 +103,24 @@
         # Load data
       sites <- read.csv("Sites.csv")
         # Load site data associated with results
+      
+      median_results <- results3 %>% group_by(SITE_NO, PARM_NM) %>% dplyr::summarise(median_val = median(RESULT_VA)) %>% ungroup()
+        # Make data frame containing site number and parameter name, with the median result value
+    
+      short_results <- pivot_wider(median_results, id_cols = SITE_NO, names_from = PARM_NM, values_from = median_val)
+        # Convert median_results to short form
+      
+      Interestingcolumns_data <- as.data.frame(short_results[,c(2,7,8,9,11,12,16,17)])
+        # Select the columns that we are interested in showing on the PCA
+      
+      rownames(Interestingcolumns_data) <- short_results$SITE_NO
+        # Assigns site number to be the row name so that it is not included in the PCA
+      
+      final_results <- Interestingcolumns_data[complete.cases(Interestingcolumns_data), ]
+        # Removes NAs from the data set
+      
+      metadata <- sites[match(rownames(final_results), sites$SITE_NO),]
+        # Create metadata by matching the row names of final_results with the site numbers in the site data frame
       
 # Solutions ####################################################################
   
@@ -414,23 +434,36 @@
   
 # Q58
   
+  data_correlation <- cor(final_results)
+    # Make correlation matrix with Pearson's correlation
+  View(data_correlation)
   
+  data_correlation_nonparametric <- cor(final_results, method = "spearman")
+    # Make correlation matrix with Spearman's correlation
+  View(data_correlation)
   
+# Q59  
   
+  library(pheatmap)
+    # Load package to make heat map
   
+  pheatmap(data_correlation, annotations=rownames(data_correlation),  color = colorRampPalette(c("blue", "white", "red"))(50), show_rownames = T, show_colnames = T)
+    # Make heat map
   
+# Q60
   
+  data_correlation <- cor(t(final_results))
+    # Make correlation matrix for transposed data frame 
   
+  pheatmap(data_correlation, show_rownames = F, show_colnames = F)
+    # Make heat map of sites and chemicals  
   
+# Q62
   
+  # I already have ggbiplot installed
+  library(ggbiplot)
   
-  
-  
-  
-  
-  
-  
-  
+# Q63
   
   
   
