@@ -468,5 +468,3 @@
   prcompData <- prcomp(final_results, center = T, scale = T)
     # Make principal component axes  
   summary(prcompData)
-  
-# Edits from the github
