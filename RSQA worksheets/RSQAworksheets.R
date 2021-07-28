@@ -469,4 +469,4 @@
     # Make principal component axes  
   summary(prcompData)
   
-  
+# Edits from the github
