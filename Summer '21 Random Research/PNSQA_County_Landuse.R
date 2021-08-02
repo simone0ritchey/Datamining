@@ -25,3 +25,15 @@ watershed_data <- read.csv("RSQA_Characteristics_Data_WatershedData.csv")
   # Extract PNSQA land use
   PNSQA_watershed_data <- filter(watershed_data, RSQA_Study = "PNSQA")
 
+# Loading site data
+setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/RSQA worksheets/Multivariable Analysis")
+sites <- read.csv("Sites.csv")
+
+# Clean site data
+
+  # Extract PNSQA sites
+  PNSQA_sites <- filter(sites, RSQA_STUDY = "PNSQA")
+  
+  
+  
+  
