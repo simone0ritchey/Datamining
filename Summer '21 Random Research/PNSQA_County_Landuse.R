@@ -32,7 +32,7 @@ sites <- read.csv("Sites.csv")
 # Clean site data
 
   # Extract PNSQA sites
-  PNSQA_sites <- filter(sites, RSQA_STUDY == "PNSQA")
+  PNSQA_sites <- filter(sites, RSQA_STUDY = "PNSQA")
   
   
   
