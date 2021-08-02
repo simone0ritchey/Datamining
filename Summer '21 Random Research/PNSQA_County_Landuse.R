@@ -12,6 +12,7 @@ library(dplyr)
 setwd("/Users/simone/Documents/UT/UrbanEco/Datamining/LandUse_RSQA_Data")
 watershed_data <- read.csv("RSQA_Characteristics_Data_WatershedData.csv")
 
+
 ################################################################################
 
 ### PCA of land use grouped by county
@@ -23,5 +24,5 @@ watershed_data <- read.csv("RSQA_Characteristics_Data_WatershedData.csv")
 # Clean land use data
 
   # Extract PNSQA land use
-  PNSQA_watershed_data <- filter(watershed_data, RSQA_STUDY = "PNSQA")
+  PNSQA_watershed_data <- filter(watershed_data, RSQA_Study = "PNSQA")
 
