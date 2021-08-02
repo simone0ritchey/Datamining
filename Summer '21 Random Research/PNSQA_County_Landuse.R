@@ -23,5 +23,5 @@ watershed_data <- read.csv("RSQA_Characteristics_Data_WatershedData.csv")
 # Clean land use data
 
   # Extract PNSQA land use
-  PNSQA_watershed_data <- filter(watershed_data, RSQA_Study = "PNSQA")
+  PNSQA_watershed_data <- filter(watershed_data, RSQA_STUDY = "PNSQA")
 
