@@ -1,4 +1,4 @@
-##### Pirates Worksheet
+##### Pirates Worksheet :)
 
 # Working Directory
 
